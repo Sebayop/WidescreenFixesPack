@@ -38,6 +38,12 @@ jobs:
       env:
         CODE_SIGNING_PFX: ${{ github.event_name == 'push' && github.ref_name == 'master' && secrets.CODE_SIGNING_PFX || '' }}
         CODE_SIGNING_PASSWORD: ${{ github.event_name == 'push' && github.ref_name == 'master' && secrets.CODE_SIGNING_PASSWORD || '' }}
+    - name: Upload GTASA zip
+      uses: actions/upload-artifact@v4
+      with:
+        name: GTASA.WidescreenFix-pr2348
+        path: build/packaging/*/archives/*.zip
+        if-no-files-found: error
     - name: Update Tags
       continue-on-error: true
       if: ${{ github.event_name == 'push' && github.ref_name == 'master' }}
