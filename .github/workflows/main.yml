@@ -31,6 +31,7 @@ jobs:
     - name: Build Solution
       uses: ./.github/workflows/build_all
       with:
+        packages: GTASA.WidescreenFix
         packaging_mode: ${{ github.event_name == 'push' && github.ref_name == 'master' && 'as-ready' || 'after-build' }}
         signing_profile: ${{ github.event_name == 'push' && github.ref_name == 'master' && 'required' || 'off' }}
       env:
